@@ -1,0 +1,6 @@
+version: "3.7"
+services:
+  jupyter: 
+    image: jupyter/scipy-notebook:17aba6048f44
+    ports:
+      - "8888:8888"
