@@ -1,6 +1,8 @@
 version: "3"
 services:
   node:
+    build: 
+      context: ./node
     image: "node:8"
     user: "node"
     working_dir: /home/node/app
