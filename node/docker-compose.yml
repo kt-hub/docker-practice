@@ -13,4 +13,4 @@ services:
       - ./data:/home/node/app
     tty: true
     ports:
-      - "3000:3000"
+      - "20000-20100:20000-20100"
