@@ -2,6 +2,7 @@ version: "3"
 services:
   php: 
     build: ./data/php
+    working_dir: /var/www/html
     volumes:
       - ./data/www/html:/var/www/html
     depends_on:
