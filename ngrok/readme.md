@@ -1,0 +1,1 @@
+docker-compose run -p 54040:4040  ngrok ngrok http http://192.168.33.15:48888

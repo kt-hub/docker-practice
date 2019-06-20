@@ -1,0 +1,15 @@
+version: "3"
+services:
+  ngrok:
+    image: "wernight/ngrok"
+    links:
+      - web
+    tty: true
+    ports:
+      - "54040:4040"
+    depends_on:
+      - web
+  web:
+    image: "nginx"
+    ports: 
+      - "48888:80"
