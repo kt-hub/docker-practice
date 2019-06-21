@@ -1,2 +1,2 @@
 FROM "node:8"
-ENV PATH=$PATH:/home/node/.npm-global/bin
+ENV PATH=$PATH:/home/node/app/.npm-global/bin
