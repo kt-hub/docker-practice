@@ -1,0 +1,10 @@
+version: "3"
+services:
+  go:
+    image: "golang:latest"
+    working_dir: /go
+    volumes:
+      - ./data:/go
+    ports:
+      - "48080:48080"
+    tty: true   
