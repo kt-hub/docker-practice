@@ -1,0 +1,10 @@
+version: "3"
+services:
+  haskell: 
+    image: haskell:8
+    working_dir: /home/vagrant/data
+    volumes:
+      - ./data:/home/vagrant/data
+    tty: true
+    ports:
+      - "8888:8888"
