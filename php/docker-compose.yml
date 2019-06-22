@@ -1,0 +1,33 @@
+version: "3"
+services:
+  php: 
+    build: ./data/php
+    working_dir: /var/www/html
+    volumes:
+      - ./data/www/html:/var/www/html
+    depends_on:
+      - db
+  nginx:
+    image: nginx:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./data/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./data/www/html:/var/www/html
+    depends_on:
+      - php
+  db:
+    image: mysql:5.7
+    ports:
+      - 13306:3306
+    volumes:
+      - ./data/db/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8888:80
+    depends_on:
+      - db
