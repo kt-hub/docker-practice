@@ -1,0 +1,19 @@
+docker で作成したファイルをホスト側で編集で器用にする
+以下のサイトを参考にして、ホスト側のuidと同じユーザーをコンテナに作成する。
+https://qiita.com/iganari/items/1d590e358a029a1776d6
+
+以下のコマンドをdockerfileにまとめてあげればいいと思う
+
+# apt update
+RUN apt-get update
+RUN apt-get install -y sudo
+
+# add sudo user
+RUN groupadd -g 1000 developer && \
+    useradd  -g      developer -G sudo -m -s /bin/bash iganari && \
+    echo 'iganari:hogehoge' | chpasswd
+
+RUN echo 'Defaults visiblepw'             >> /etc/sudoers
+RUN echo 'iganari ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER iganari
