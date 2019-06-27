@@ -5,3 +5,17 @@ WORKDIR /code
 COPY ./data/requirements.txt /code/
 RUN pip install -r requirements.txt
 COPY ./data /code/
+
+# apt update
+RUN apt-get update
+RUN apt-get install -y sudo
+
+# add sudo user
+RUN groupadd -g 1000 developer && \
+    useradd  -g      developer -G sudo -m -s /bin/bash django && \
+    echo 'django:hogehoge' | chpasswd
+
+RUN echo 'Defaults visiblepw'             >> /etc/sudoers
+RUN echo 'django ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER django
