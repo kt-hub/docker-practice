@@ -11,6 +11,20 @@ services:
       - ./data/php/html:/var/www/html
     depends_on:
       - db
+  node:
+    build: 
+      context: ./node
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+      - NPM_CONFIG_PREFIX=/home/node/app/.npm-global
+    volumes:
+      - ./data/php/html:/home/node/app
+    tty: true
+    ports:
+      - "28001:8000"
   db:
     image: mysql:5.7
     ports:
